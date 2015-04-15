@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title test
+    body
+        div.everything
+            div.head 连接到 http://10.33.68.105:9999 来添加测试机器
+            div.list
+                h1 当前测试机器
+                ul
+                    li A
+                    li B
+                    li C
+                    li D
+
+
+        script(src="../../bower_components/requirejs/require.js")
+        script(src="config.js")
+        script(src="config2.js")
+
+
+        // startup
+        script.
+            require(['src/home/index'], function (index) {
+                index.init()
+            })

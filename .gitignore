@@ -1,0 +1,11 @@
+.idea/
+bower_components/
+dev/node_modules/
+
+*.html
+*.css
+*.css.map
+*.js
+*.js.map
+
+!*.es6.js
