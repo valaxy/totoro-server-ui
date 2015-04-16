@@ -5,23 +5,25 @@ html
         title test
     body
         div.everything
-            div.head 连接到 http://10.33.68.105:9999 来添加测试机器
+            div.head
+                template 连接到 {{url}} 来添加测试机器
             div.list
-                div.head
-                    template
-                        h1 当前已连接测试机: {{count}}
+                div
+                    |当前已连接测试机:
+                    span.count 0
                 ul
                     template
                         li {{name}}
 
 
         script(src="../../bower_components/requirejs/require.js")
-        script(src="config.js")
-        script(src="config2.generate.js")
-
+        script(src="config.generate.js")
 
         // startup
         script.
+            require.config({
+                baseUrl: '../../'
+            })
             require(['src/home/index'], function (index) {
                 index.init()
             })
