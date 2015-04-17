@@ -26,12 +26,15 @@ define(function (require) {
 				socket.on('init', (list) => {
 					for (var id in list) {
 						var laborInfo = list[id]
-						this.model.get('labors').add(Labor.parse(laborInfo))
+						this.model.get('labors').add(Labor.parse(id, laborInfo))
 					}
 				})
 
-				socket.on('add', (laborInfo) => {
-					this.model.add(Labor.parse(laborInfo))
+				socket.on('add', (list) => {
+					for (var id in list) {
+						var laborInfo = list[id]
+						this.model.get('labors').add(Labor.parse(id, laborInfo))
+					}
 				})
 
 
