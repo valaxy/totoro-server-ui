@@ -15,7 +15,16 @@ define(function (require) {
 	}
 
 	var ListView = Backbone.View.extend({
-		events: {},
+		events: {
+			'click .submit': function () {
+				var runner = this.$('.runner').val()
+				$.get(getServerUrl(config) + '/runTask', {
+					runner: runner
+				}, function (res) {
+					console.log(res)
+				}, 'json')
+			}
+		},
 		initialize: function () {
 			this.setElement($('.everything'))
 			this.model = new Server
@@ -35,6 +44,10 @@ define(function (require) {
 						var laborInfo = list[id]
 						this.model.get('labors').add(Labor.parse(id, laborInfo))
 					}
+				})
+
+				socket.on('remove', (id) => {
+					this.model.get('labors').get(id).destroy()
 				})
 
 

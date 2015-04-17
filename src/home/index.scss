@@ -1,20 +1,22 @@
 @charset "utf-8";
 @import "../../bower_components/metro-ui-css/css/metro-bootstrap.css";
 .everything {
-	width:  100%;
-	height: 100%;
+	width:          100%;
+	height:         100%;
+	display:        flex;
+	flex-direction: column;
 
 	.main {
 		$height: 60px;
 		border-bottom:  1px solid #ccc;
 		display:        flex;
 		flex-direction: row;
-		height:         $height;
+		flex:           0 $height;
+		align-items:    stretch;
 
 		h1 {
 			flex:         0 150px;
 			font-size:    4rem;
-			height:       100% !important;
 			line-height:  $height;
 			margin:       0 0 0 2.5% !important;
 			border-right: 1px solid #ccc;
@@ -22,7 +24,8 @@
 
 		div {
 			flex:   1;
-			height: 100% !important;
+			height: auto !important;
+			margin: 0 !important;
 
 			input {
 				position:  absolute;
@@ -40,55 +43,81 @@
 			width: 100px;
 		}
 	}
-}
-.content {
-	width:  95%;
-	margin: auto;
 
-	.list {
-		ul {
-			list-style:      none;
-			display:         flex;
-			flex-flow:       row wrap;
-			justify-content: flex-start;
-			padding:         0 !important; // metro
-			margin:          0 !important; // metro
+	.content {
+		width:          95%;
+		margin:         auto;
+		display:        flex;
+		flex-direction: row;
+		flex:           1;
 
-			li {
-				border:         1px solid #ccc;
-				background:     #fdfdfd;
-				border-radius:  3px;
-				width:          180px;
-				height:         180px;
-				margin:         0 20px 20px 0;
-				display:        flex;
-				flex-direction: column;
+		.labor-list {
+			flex: 3;
 
-				&:last-child {
-					margin: 0 0 20px 0;
+			.list {
+				ul {
+					list-style:      none;
+					display:         flex;
+					flex-flow:       row wrap;
+					justify-content: flex-start;
+					padding:         0 !important; // metro
+					margin:          0 !important; // metro
+
+					li {
+						border:         1px solid #ccc;
+						background:     #fdfdfd;
+						border-radius:  3px;
+						width:          180px;
+						height:         180px;
+						margin:         0 20px 20px 0;
+						display:        flex;
+						flex-direction: column;
+
+						&:last-child {
+							margin: 0 0 20px 0;
+						}
+
+						.browser-icon {
+							display:         inline-block;
+							width:           100%;
+							flex:            0 100px;
+							background:      url('browser-icon/chrome-128.png') center no-repeat;
+							background-size: 100px;
+							margin-top:      10px;
+						}
+
+						&[data-browser=chrome] .browser-icon {
+							background-image: url('browser-icon/chrome-128.png');
+						}
+
+						&[data-browser=ie] .browser-icon {
+							background-image: url('browser-icon/ie-128.png');
+						}
+
+						&[data-browser=firefox] .browser-icon {
+							background-image: url('browser-icon/firefox-128.png');
+						}
+
+						.browser {
+							flex:       1;
+							text-align: center;
+							margin-top: 10px;
+						}
+
+						.os {
+							flex:       1;
+							text-align: center;
+						}
+
+					}
 				}
-
-				.browser-icon {
-					display:         inline-block;
-					width:           100%;
-					flex:            0 100px;
-					background:      url('browser-icon/chrome-128.png') center no-repeat;
-					background-size: 100px;
-					margin-top:      10px;
-				}
-
-				.browser {
-					flex:       1;
-					text-align: center;
-					margin-top: 10px;
-				}
-
-				.os {
-					flex:       1;
-					text-align: center;
-				}
-
 			}
+		}
+
+		.result {
+			flex:        2;
+			border-left: 1px solid #ccc;
+			text-align:  center;
 		}
 	}
 }

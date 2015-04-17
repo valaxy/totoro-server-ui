@@ -9,7 +9,6 @@ define(function (require) {
 		}
 	}, {
 		parse: function (id, info) {
-			console.log(info)
 			var labor = new Labor(info)
 			labor.set('id', id)
 			return labor
