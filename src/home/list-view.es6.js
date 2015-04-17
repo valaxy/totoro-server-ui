@@ -53,23 +53,30 @@ define(function (require) {
 
 				this.listenTo(this.model, 'add:labors', function (labor, labors) {
 					this.$('ul').append(new LaborView({model: labor}).$el)
-					this.$('.list > div .count').text(labors.length)
+					this.$('.count-info .count').text(labors.length)
 				})
 
 
-				// head
-				new (Backbone.View.extend({
-					el: this.$('.head'),
-					initialize: function () {
-						this._template = this.$('template').html()
-						this.render()
-					},
-					render: function () {
-						this.$el.replaceWith(mustache.render(this._template, {
-							url: getServerUrl(config)
-						}))
-					}
-				}))
+				this.listenTo(this.model, 'remove:labors', function (labor, labors) {
+					this.$('.count-info .count').text(labors.length)
+				})
+
+				var url = getServerUrl(config)
+				this.$('.join-info a').text(url).attr('href', url)
+
+				//// head
+				//new (Backbone.View.extend({
+				//	el: this.$('.head'),
+				//	initialize: function () {
+				//		this._template = this.$('template').html()
+				//		this.render()
+				//	},
+				//	render: function () {
+				//		this.$el.replaceWith(mustache.render(this._template, {
+				//			url: getServerUrl(config)
+				//		}))
+				//	}
+				//}))
 			})
 		}
 	})

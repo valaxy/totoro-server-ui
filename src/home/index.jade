@@ -14,11 +14,12 @@ html
             div.content
                 div.labor-list
                     div.head
-                        template 连接到 {{url}} 来添加测试机器
-                    div.list
-                        div
-                            | 当前已连接测试机:
+                        div.count-info
                             span.count 0
+                            |  台接入
+                        div.join-info
+                            a(href="")
+                    div.list
                         ul
                             template
                                 li(data-browser="{{browser}}")
